@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"tgl/eventapi/db"
 	"tgl/eventapi/models"
 
 	"github.com/gin-gonic/gin"
@@ -11,6 +12,7 @@ const serverAddress = "localhost:8080"
 const basePath = ""
 
 func main() {
+	db.InitDB()
 	server := gin.Default()
 	eventsRouter(server)
 
