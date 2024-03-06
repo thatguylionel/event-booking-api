@@ -12,10 +12,8 @@ type Event struct {
 	Description string    `binding:"required" json:"description"`
 	Location    string    `binding:"required" json:"location"`
 	DateTime    time.Time `binding:"required" json:"datetime"`
-	UserID      int       `json:"userid"`
+	UserID      int64     `json:"userid"`
 }
-
-var events = []Event{}
 
 func (e *Event) Save() error {
 	query := `
