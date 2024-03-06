@@ -1,10 +1,3 @@
-POST http://localhost:8080/events
+DELETE http://localhost:8080/events/1/register
 Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3Q0QHVzZXIudXMiLCJleHAiOjE3MDk3NDU5MjksInVzZXJJZCI6MX0.srbhZ9vAWED-5W4bMNsYheLyoJ1IowoPzjXFOa7Ol6s
-
-{
-    "name": "Test Event 2",
-    "description": "A test event",
-    "location": "A test location",
-    "datetime": "2025-01-01T15:30:00.000Z"
-}
