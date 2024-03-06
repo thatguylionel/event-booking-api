@@ -6,7 +6,7 @@ import (
 )
 
 type User struct {
-	ID       int    `json:"id"`
+	ID       int64  `json:"id"`
 	Email    string `binding:"required"   json:"email"`
 	Password string `binding:"required"  json:"password"`
 }
@@ -29,16 +29,16 @@ func (u User) Save() error {
 	}
 	userId, err := result.LastInsertId()
 
-	u.ID = int(userId)
+	u.ID = int64(userId)
 	return err
 }
 
 func (u User) ValidateCredentials() error {
-	query := `SELECT password FROM users WHERE lower(email) = lower(?)`
+	query := `SELECT id, password FROM users WHERE lower(email) = lower(?)`
 	row := db.DB.QueryRow(query, u.Email)
 
 	var retrievedPassword string
-	err := row.Scan(&retrievedPassword)
+	err := row.Scan(&u.ID, &retrievedPassword)
 	if err != nil {
 		return err
 	}

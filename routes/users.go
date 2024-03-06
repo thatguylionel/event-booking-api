@@ -3,6 +3,7 @@ package routes
 import (
 	"net/http"
 	"tgl/eventapi/models"
+	"tgl/eventapi/utils"
 
 	"github.com/gin-gonic/gin"
 )
@@ -40,5 +41,7 @@ func login(context *gin.Context) {
 		return
 	}
 
-	context.JSON(http.StatusOK, gin.H{"message": "User authenticated"})
+	token, err := utils.GenerateToken(user.Email, user.ID)
+
+	context.JSON(http.StatusOK, gin.H{"message": "User authenticated", "token": token})
 }
